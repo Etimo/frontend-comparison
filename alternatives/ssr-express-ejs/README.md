@@ -13,4 +13,6 @@ Express is a node.js http server library. EJS is a template library.
 
 ## Run project
 
-`yarn start`
+1. Start backend
+2. Copy `.env-example` to `.env`
+3. Run `yarn start`

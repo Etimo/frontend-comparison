@@ -4,6 +4,30 @@
   <body class="container">
     <%- include('../partials/header') %>
     <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (const product of products) { %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.description %></td>
+            <td><%= product.price %></td>
+            <td>
+              <form method="post">
+                <input type="hidden" name="action" value="add-to-cart">
+                <input type="hidden" name="prodId" value="<%= product.id %>">
+                <button type="submit">Add to cart</button>
+              </form>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
     </table>
   </body>
 </html>
