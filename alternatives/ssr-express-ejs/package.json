@@ -3,28 +3,34 @@
   "packageManager": "yarn@3.2.2",
   "type": "module",
   "scripts": {
-    "build": "rm -rf dist && tsc && cp -r public dist/public && cp -r src/views dist/",
-    "start": "dotenv -e .env node dist/index.js",
+    "build": "yarn clean && yarn build-ts && yarn build-public && yarn build-css && yarn build-ts",
+    "build-public": "mkdir -p dist/public && cp -r ../../resources/assets dist/public/ && cp -r public dist/",
+    "build-css": "mkdir -p dist/public/css && sass --style=compressed src/scss/style.scss dist/public/css/style.css",
+    "build-ts": "tsc && cp -r src/views dist/src/views",
+    "clean": "rm -rf dist && rm -rf public/css && rm -rf public/assets",
+    "dev": "cp -r ../../resources/assets ./public/ && nodemon -e js,ts,ejs,scss --exec ./dev.sh",
+    "start": "dotenv -e .env node dist/src/index.js",
     "start-clean": "yarn build && yarn start"
   },
   "engines": {
     "node": "18.9.0"
   },
   "dependencies": {
-    "dotenv": "16.0.2",
     "dotenv-cli": "6.0.0",
     "ejs": "3.1.8",
     "express": "4.18.1"
   },
   "devDependencies": {
-    "@types/express": "4.17.13",
-    "@types/node": "18.7.16",
-    "@typescript-eslint/eslint-plugin": "5.36.2",
-    "@typescript-eslint/parser": "5.36.2",
-    "eslint": "8.23.0",
-    "eslint-plugin-simple-import-sort": "8.0.0",
+    "@types/express": "4.17.17",
+    "@types/node": "18.13.0",
+    "@typescript-eslint/eslint-plugin": "5.52.0",
+    "@typescript-eslint/parser": "5.52.0",
+    "eslint": "8.34.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
+    "nodemon": "2.0.20",
+    "sass": "1.58.1",
     "ts-node": "10.9.1",
-    "typescript": "4.8.2"
+    "typescript": "4.9.5"
   }
 }

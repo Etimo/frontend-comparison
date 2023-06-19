@@ -1,0 +1,245 @@
+$darkest: #111111;
+$grey: #dfdfdf;
+$bright: #f5f5f5;
+$brightest: #ffffff;
+
+* {
+	color: $darkest;
+	font-family: 'Noto Sans', 'Roboto', 'Open Sans', system-ui, sans-serif;
+}
+
+.svg-icon {
+	display: inline-block;
+	fill: currentColor;
+	height: 1.5rem;
+	vertical-align: middle;
+	width: 1.5rem;
+}
+
+.pill {
+	background-color: $darkest;
+	border-radius: 40px;
+	border: solid 1px $darkest;
+	color: $brightest;
+	display: inline-block;
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin: 20px 0;
+	padding: 20px 40px;
+}
+
+.pill-light {
+	@extend .pill;
+	background-color: transparent;
+	color: $darkest;
+}
+
+a {
+	color: $darkest;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.page-layout {
+	display: grid;
+	grid-template-rows: 57px auto auto;
+	grid-template-columns: 200px auto;
+	margin: 0;
+	min-height: 100vh;
+	padding: 0;
+
+	#promotions-banner {
+		background-color: $darkest;
+		grid-column: 1 / span 2;
+		grid-row: 1;
+		padding: 15px 0;
+		text-align: center;
+
+		a {
+			color: $brightest;
+			font-size: 1.2rem;
+			text-align: center;
+
+			&:first-child {
+				padding-right: 5vw;
+			}
+
+			svg {
+				fill: $brightest;
+				height: 27px;
+				margin-right: 10px;
+				width: 27px;
+				position: relative;
+				top: -3px;
+			}
+		}
+	}
+
+	#menu-trigger-container {
+		grid-column: 1;
+		grid-row: 2;
+		text-align: center;
+
+		#menu-trigger {
+			background: none;
+			border: none;
+			cursor: pointer;
+			display: block;
+			margin-right: auto;
+			margin-left: auto;
+			margin-top: 25px;
+
+			&:hover {
+				.menu-trigger-icon {
+					background-color: $grey;
+				}
+			}
+
+			span {
+				display: block;
+			}
+
+			.menu-trigger-icon {
+				border-radius: 30px;
+				padding: 10px;
+				svg {
+					height: 35px;
+					width: 35px;
+				}
+			}
+
+			.menu-trigger-label {
+				font-size: 1.4rem;
+				margin-top: 2px;
+			}
+		}
+	}
+
+	#main-content {
+		grid-row: 2;
+		grid-column: 2;
+		padding-right: 50px;
+
+		#search-bar {
+			margin-top: 30px;
+			position: relative;
+
+			.logo-link {
+				display: inline-block;
+
+				svg {
+					height: 60px;
+					margin-top: 10px;
+					width: 135px;
+				}
+			}
+
+			.search-form {
+				display: inline-block;
+
+				.search-box {
+					background-color: $bright;
+					border-radius: 30px;
+					border: none;
+					font-size: 1.2rem;
+					padding: 20px 50px;
+					width: 50vw;
+					margin-left: 2vw;
+
+					/* Works not :( */
+					background-image: url(/assets/forstoringsglas.svg);
+					background-position: 7px 7px;
+					background-repeat: no-repeat;
+				}
+			}
+
+			.cart {
+				display: inline-block;
+				position: absolute;
+				top: 10px;
+				right: 0;
+			}
+		}
+
+		#head-peripherals {
+			overflow: auto;
+
+			&::after {
+				clear: both;
+				content: "";
+				display: table;
+			}
+
+			.peripherals-menu {
+				float: left;
+				list-style: none;
+				padding-left: 0;
+
+				li {
+					float: left;
+					margin-right: 2vw;
+					font-weight: bold;
+				}
+			}
+
+			.postal-area, .city {
+				float: right;
+				font-weight: bold;
+			}
+		}
+
+		.products {
+			align-content: stretch;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 35px;
+			justify-content: flex-start;
+
+			> a {
+				// flex: 0 1 calc(33% - 70px);
+				flex-basis: calc(33% - 20px);
+
+				> img {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	footer {
+		grid-column: 1 / span 2;
+		grid-row: 3;
+
+		display: grid;
+		background-color: $bright;
+		grid-template-columns: repeat(6, 1fr);
+		padding: 100px 200px;
+
+		.promotions {
+			grid-column-start: 1;
+			grid-column-end: 3;
+			grid-row: 1;
+		}
+
+		.link-list {
+			grid-row: 1;
+		}
+
+		.social-media-links {
+			grid-column-start: 1;
+			grid-column-end: 7;
+			grid-row: 2;
+
+			ul {
+				list-style: none;
+
+				li {
+					float: left;
+				}
+			}
+		}
+	}
+}

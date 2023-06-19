@@ -16,7 +16,7 @@ if (!BACKEND_URL) { throw new Error('Missing ENV BACKEND_URL'); }
 
 const api = new Api({ BACKEND_URL });
 
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/../public`));
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
 

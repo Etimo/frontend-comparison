@@ -1,33 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('../partials/head') %>
-  <body class="container">
-    <%- include('../partials/header') %>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for (const product of products) { %>
-          <tr>
-            <td><%= product.name %></td>
-            <td><%= product.description %></td>
-            <td><%= product.price %></td>
-            <td>
-              <form method="post">
-                <input type="hidden" name="action" value="add-to-cart">
-                <input type="hidden" name="prodId" value="<%= product.id %>">
-                <button type="submit">Add to cart</button>
-              </form>
-            </td>
-          </tr>
+  <body class="page-layout">
+    <div id="promotions-banner">
+      <a href="#"><%- include ("../../../public/assets/lager-plupp.svg") %> Handla online och hämta efter 2 timmar* med Click & collect</a>
+      <a href="#"><%- include ("../../../public/assets/sol.svg") %> SOLSTRÅLE - solpaneler i samarbete med Svea Solar</a>
+    </div>
+    <div id="menu-trigger-container">
+      <button id="menu-trigger" type="button">
+        <span class="menu-trigger-icon"><%- include ("../../../public/assets/burgare.svg") %></span>
+        <span class="menu-trigger-label">Meny</span>
+      </button>
+    </div>
+    <div id="main-content">
+      <div id="search-bar">
+        <a href="/" class="logo-link">
+          <%- include ("../../../public/assets/ikea-logo.svg") %>
+        </a>
+        <form method="get" class="search-form">
+          <input class="search-box" type="text" placeholder="Vad letar du efter?" name="q" />
+        </form>
+        <div class="cart">
+          <%- include ("../../../public/assets/korg.svg") %>
+        </div>
+      </div>
+      <div id="head-peripherals">
+        <ul class="peripherals-menu">
+          <li><a href="#">Erbjudanden</a></li>
+          <li><a href="#">Produkter</a></li>
+          <li><a href="#">Alla rum</a></li>
+          <li><a href="#">Just nu</a></li>
+        </ul>
+        <p class="postal-area"><%- include ("../../../public/assets/lastbil.svg") %> 123 72</p>
+        <p class="city"><%- include ("../../../public/assets/lager.svg") %> Farsta</p>
+      </div>
+      <div class="pre-products">
+        <div class="product-intro-copy">
+          <div class="copy">
+            <h1>Drömförvaring till små priser</h1>
+            <p>Få ordning hemma och behåll stilen genom att kombinera öppen och stängd förvaring - tänk praktiska lådor, snygga korgar och hyllor som rymmer allt du behöver.</p>
+          </div>
+        </div>
+        <a href="#" class="cta pill-light">Handla förvaring</a>
+      </div>
+      <div class="products">
+        <% for(var i = 0; i < products.length; i++) { %>
+          <a href="/p/<%- products[i].id %>"><img src="assets/products/<%- products[i].images[Math.floor(Math.random()*products[i].images.length)] %>" alt="" /></a>
         <% } %>
-      </tbody>
-    </table>
+      </div>
+    </div>
+    <footer>
+      <section class="promotions">
+        <h2>Gå med i IKEA Family</h2>
+        <p>Ge dina idéer nytt liv med erbjudanden, inspiration och massor av aktiviteter i våra varuhus - helt kostnadsfritt.</p>
+        <a class="pill" href="#">Bli medlem här</a>
+
+        <h2>IKEA för företag</h2>
+        <p>Våra företagsexperter hjälper till med flexibla, prisvärda och mer hållbara lösningar.</p>
+        <a class="pill" href="#">IKEA för företag</a>
+      </section>
+      <section class="link-list">
+        <h2>Ditt IKEA Family</h2>
+        <p><a href="#">Logga in</a></p>
+        <p><a href="#">Min inköpslista</a></p>
+        <p><a href="#">Följ min order</a></p>
+        <p><a href="#">Aktuella erbjudanden</a></p>
+      </section>
+      <section class="link-list">
+        <h2>Handla på IKEA</h2>
+        <p><a href="#">Varuhus & öppettider</a></p>
+        <p><a href="#">Betalningsalternativ</a></p>
+        <p><a href="#">Leveransalternativ</a></p>
+        <p><a href="#">Personlig planering</a></p>
+        <p><a href="#">Planeringsverktyg</a></p>
+        <p><a href="#">Hela sortimentet</a></p>
+        <p><a href="#">Produktguider</a></p>
+        <p><a href="#">Broschyrer</a></p>
+        <p><a href="#">Presentkort</a></p>
+        <p><a href="#">Restaurangen</a></p>
+      </section>
+      <section class="link-list">
+        <h2>Kundservice</h2>
+        <p><a href="#">Kundservice</a></p>
+        <p><a href="#">Vanliga frågor</a></p>
+        <p><a href="#">Hjälp oss att bli bättre</a></p>
+        <p><a href="#">Servicetjänster</a></p>
+        <p><a href="#">Retur & reklamation</a></p>
+        <p><a href="#">Reservdelar</a></p>
+        <p><a href="#">Köp & leveransvillkor</a></p>
+      </section>
+      <section class="link-list">
+        <h2>Det här är IKEA</h2>
+        <p><a href="#">Jobba på IKEA</a></p>
+        <p><a href="#">IKEA Museum</a></p>
+        <p><a href="#">Livet hemma</a></p>
+        <p><a href="#">IKEA Foundation</a></p>
+        <p><a href="#">Socialt ansvar</a></p>
+        <p><a href="#">Om oss</a></p>
+        <p><a href="#">Pressrum</a></p>
+      </section>
+      <section class="social-media-links">
+        <ul>
+          <li><a href="https://facebook.com"><%- include ("../../../public/assets/facebook.svg") %></a></li>
+          <li><a href="https://pintrest.com"><%- include ("../../../public/assets/pintrest.svg") %></a></li>
+        </ul>
+      </section>
+    </footer>
   </body>
 </html>

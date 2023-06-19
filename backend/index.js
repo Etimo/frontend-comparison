@@ -1,10 +1,34 @@
 import express from 'express';
+import { readdir } from 'node:fs/promises';
 
 const app = express();
 const port = process.env.PORT;
 
 if (!port) {
 	throw new Error('Missing ENV PORT');
+}
+
+const products = [
+  { images: [], id: 'bergshult-hyllplan', name: 'Bergshult', description: 'Hyllplan', price: 111.2 },
+  { images: [], id: 'saluding-korg-set-om-2-handgjord-bambu', name: 'Saluding', description: 'Korg set om 2, handgjord bambu', price: 63.2 },
+  { images: [], id: 'ekenabben-oeppen-hyllsektion', name: 'Ekenabben', description: 'Öppen hyllsektion', price: 399.2 },
+  { images: [], id: 'billy-bokhylla', name: 'Billy', description: 'Bokhylla', price: 479.2 },
+  { images: [], id: 'risatorp-korg', name: 'Risatorp', description: 'Korg', price: 159.2 },
+];
+
+const cart = {
+  items: [],
+  sum: 0,
+};
+
+console.log("Reading product images from disk");
+const productImages = await readdir('../resources/assets/products');
+for (let pidx = 0; products.length > pidx; pidx ++) {
+  for (let iidx = 0; productImages.length > iidx; iidx++) {
+    if (products[pidx].id === productImages[iidx].substring(0, products[pidx].id.length)) {
+      products[pidx].images.push(productImages[iidx]);
+    }
+  }
 }
 
 app.use(express.json());
@@ -41,15 +65,3 @@ function setCartProduct({ prodId, qty }) {
     cart.sum += item.product.price * item.qty;
   }
 }
-
-const products = [
-  { id: '0d71d1a2-6e9b-4010-9e4d-e36fbb311b39', name: 'Laptop', description: 'Awesome computer is awesome with many bells and whistles.', price: 1200 },
-  { id: '69175702-7a71-4b6b-bbdf-2ad1c022f103', name: 'Tiger', description: 'Hard to maintain. Illegal in many places.', price: 9500 },
-  { id: '5d4149c6-b327-4153-b015-167e15eac6d3', name: 'Glass', description: 'Can contain water. Is often half full or half empty.', price: 2 },
-  { id: 'f9e226b2-c844-4922-8e22-91636bc88e6c', name: 'Old bag', description: 'Pretty broken and weathered. Works best as decoration or as a gift for someone you don\'t like.', price: 150 },
-];
-
-const cart = {
-  items: [],
-  sum: 0,
-};
