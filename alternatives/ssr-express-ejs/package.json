@@ -1,6 +1,6 @@
 {
   "name": "ssr-express-ejs",
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "yarn@3.8.6",
   "type": "module",
   "scripts": {
     "build": "yarn clean && yarn build-ts && yarn build-public && yarn build-css && yarn build-ts",
