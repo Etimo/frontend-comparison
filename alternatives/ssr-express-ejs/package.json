@@ -30,7 +30,7 @@
     "eslint-plugin-typescript-sort-keys": "2.3.0",
     "nodemon": "2.0.22",
     "sass": "1.63.4",
-    "ts-node": "10.9.1",
+    "ts-node": "10.9.2",
     "typescript": "5.1.3"
   }
 }
