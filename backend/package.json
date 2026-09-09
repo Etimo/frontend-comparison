@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "dotenv-cli": "7.2.1",
-    "express": "4.18.2"
+    "express": "4.22.2"
   }
 }
